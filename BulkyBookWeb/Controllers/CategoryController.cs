@@ -154,6 +154,7 @@ namespace BulkyBookWeb.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["success"] = "Category deleted successfully";
             return RedirectToAction(nameof(Index));
         }
 
