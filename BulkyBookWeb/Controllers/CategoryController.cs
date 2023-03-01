@@ -62,7 +62,7 @@ namespace BulkyBookWeb.Controllers
             {
                 _context.Add(category);
                 await _context.SaveChangesAsync();
-                TempData["success"] = "Category updated successfully";
+                TempData["success"] = "Category created successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -102,6 +102,7 @@ namespace BulkyBookWeb.Controllers
                 {
                     _context.Update(category);
                     await _context.SaveChangesAsync();
+                    TempData["success"] = "Category updated successfully";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
