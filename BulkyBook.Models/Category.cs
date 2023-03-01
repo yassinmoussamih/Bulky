@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace BulkyBookWeb.Models;
+namespace BulkyBook.Models;
 public class Category
 {
     [Key]

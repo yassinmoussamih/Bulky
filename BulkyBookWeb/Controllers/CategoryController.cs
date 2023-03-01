@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BulkyBookWeb.Data;
-using BulkyBookWeb.Models;
+using BulkyBook.Models;
+using BulkyBook.DataAccess;
 
 namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly BulkyBookWebContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CategoryController(BulkyBookWebContext context)
+        public CategoryController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace BulkyBookWeb.Controllers
         {
             return _context.Category != null ?
                         View(await _context.Category.ToListAsync()) :
-                        Problem("Entity set 'BulkyBookWebContext.Category'  is null.");
+                        Problem("Entity set 'ApplicationDbContext.Category'  is null.");
         }
 
         // GET: Categories/Details/5
@@ -76,7 +76,8 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _context.Category
+                .FirstOrDefaultAsync(c => c.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -145,9 +146,9 @@ namespace BulkyBookWeb.Controllers
         {
             if (_context.Category == null)
             {
-                return Problem("Entity set 'BulkyBookWebContext.Category'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Category'  is null.");
             }
-            var category = await _context.Category.FindAsync(id);
+            var category = await _context.Category.FirstOrDefaultAsync(c => c.Id == id);
             if (category != null)
             {
                 _context.Category.Remove(category);

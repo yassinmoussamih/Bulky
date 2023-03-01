@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using BulkyBookWeb.Data;
+using BulkyBook.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<BulkyBookWebContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BulkyBookWebContext") ?? throw new InvalidOperationException("Connection string 'BulkyBookWebContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'BulkyBookWebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

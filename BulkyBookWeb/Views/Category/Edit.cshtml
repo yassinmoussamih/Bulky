@@ -1,4 +1,4 @@
-﻿@model BulkyBookWeb.Models.Category
+﻿@model BulkyBook.Models.Category
 
 @{
     ViewData["Title"] = "Edit";
@@ -40,5 +40,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
