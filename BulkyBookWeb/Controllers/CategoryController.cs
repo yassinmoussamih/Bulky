@@ -6,17 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BulkyBook.Models;
-using BulkyBook.DataAccess;
+using BulkyBook.DataAccess.Data;
+using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.DataAccess.Repository;
 
 namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository _db;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(ICategoryRepository _db)
         {
-            _context = context;
+            this._db = _db;
         }
 
         // GET: Categories
@@ -24,7 +27,7 @@ namespace BulkyBookWeb.Controllers
         {
             return _context.Category != null ?
                         View(await _context.Category.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Category'  is null.");
+                        Problem("Entity set 'ICategoryRepository.Category'  is null.");
         }
 
         // GET: Categories/Details/5

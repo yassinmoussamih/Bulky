@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BulkyBook.Models;
-namespace BulkyBook.DataAccess
+
+namespace BulkyBook.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

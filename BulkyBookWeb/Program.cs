@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using BulkyBook.DataAccess;
+using BulkyBook.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
